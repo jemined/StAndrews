@@ -1,0 +1,58 @@
+# Story: Upload Excel File to Populate KPI Tables in SPA
+
+**Story Description (As a / I want / So that):**  
+As a **pricing governance user**  
+I want to **upload an Excel file containing KPI tables**  
+So that **the SPA can automatically display the KPI principles, descriptions, and table data without manual data entry**.  
+
+---
+
+## Acceptance Criteria
+
+1. **File Upload Control**  
+   - Given I am on the SPA page  
+   - When I click the **Upload File** button and select a `.xlsx` file from my desktop  
+   - Then the system should parse the file client-side without uploading it to a server.  
+
+2. **Sheet Handling**  
+   - Each worksheet in the Excel file must be displayed in the SPA.  
+   - The worksheet name should be displayed as a section heading.  
+
+3. **Description Handling**  
+   - The text in **cell A1** of each sheet must be displayed as a description (italicised under the sheet title).  
+
+4. **Table Rendering**  
+   - The table header (row 2) and all subsequent rows must be rendered as an HTML table.  
+   - Empty cells should render as blank.  
+
+5. **Supported Formats**  
+   - Only `.xlsx` and `.xls` formats should be accepted.  
+   - If a different file type is uploaded, show an error message.  
+
+6. **Usability**  
+   - Tables should be scrollable if they overflow the page.  
+   - Large files (up to at least 5 MB) must be handled without crashing the page.  
+
+---
+
+## Non-Functional Requirements
+- Parsing must occur entirely in the browser (no backend dependency).  
+- The implementation should use a stable library (e.g. SheetJS).  
+- Rendering should degrade gracefully if the file contains unexpected formatting.  
+
+---
+
+## Out of Scope (for this story)
+- Saving uploaded files for reuse.  
+- Editing or exporting data back to Excel.  
+- Collapsible/expandable views (separate story).  
+
+---
+
+## Dependencies
+- SheetJS (xlsx library) included via CDN or package manager.  
+
+---
+
+## Estimate
+3 Story Points
